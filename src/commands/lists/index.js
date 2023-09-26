@@ -1,9 +1,13 @@
-const create = require('~/commands/lists/create')
-const get = require('~/commands/lists/get')
+const create = require('./create')
+const get = require('./get')
+const all = require('./all')
+const add = require('./add')
 
 const listsCommand = {
   create,
-  get
+  get,
+  all,
+  add
 }
 
 module.exports = listsCommand

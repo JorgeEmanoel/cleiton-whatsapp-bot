@@ -1,15 +1,13 @@
-const client = require('~/config/client.js')
-const messageHandler = require('~/handlers/messageHandler.js')
+const qrgenerator = require('qrcode-terminal')
+
+const client = require('~/config/client')
+const handlersPiper = require('~/handlers/handlersPiper')
+const logger = require('~/helpers/logger')
 
 client.on('qr', (qr) => {
-  // Generate and scan this code with your phone
-  console.log('QR RECEIVED', qr);
+  logger.debug('QR Code generated: ', qr)
+  qrgenerator.generate(qr, { small: true })
 });
 
-client.on('ready', () => {
-  console.log('Client is ready!');
-});
-
-client.on('message', messageHandler);
-
+client.on('message', handlersPiper.handle);
 client.initialize();

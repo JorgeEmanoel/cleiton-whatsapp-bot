@@ -1,9 +1,14 @@
-const logger = require('~/helpers/logger.js')
-const listsCommand = require('~/commands/lists/index.js')
+const logger = require('~/helpers/logger')
+const groupsCommands = require('~/commands/groups/index')
+const listsCommands = require('~/commands/lists/index')
 
 const commandMapping = {
-  [listsCommand.create.signature]: listsCommand.create,
-  [listsCommand.get.signature]: listsCommand.get
+  [groupsCommands.create.signature]: groupsCommands.create,
+  [groupsCommands.get.signature]: groupsCommands.get,
+  [listsCommands.create.signature]: listsCommands.create,
+  [listsCommands.all.signature]: listsCommands.all,
+  [listsCommands.get.signature]: listsCommands.get,
+  [listsCommands.add.signature]: listsCommands.add
 }
 
 const unhandledCommand = {
@@ -11,8 +16,8 @@ const unhandledCommand = {
 }
 
 const commandHandler = {
-  async handle (body) {
-    const [commandSignature, ...args] = body.split(' ')
+  async handle (message) {
+    const [commandSignature, ...args] = message._data.body.split(' ')
     const commandHandler = commandMapping[commandSignature]
     logger.debug({ commandSignature, args })
 
@@ -20,9 +25,7 @@ const commandHandler = {
       return unhandledCommand
     }
 
-    const handledCommand =  await commandHandler.handle(...args)
-    logger.debug({ handledCommand })
-    return handledCommand
+    await commandHandler.handle(message, ...args)
   }
 }
 

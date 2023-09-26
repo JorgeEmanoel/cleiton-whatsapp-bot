@@ -1,10 +1,17 @@
-const listRepository = require('~/repositories/listRepository.js')
+const listRepository = require('./repositories/listRepository')
 
 const create = {
-  signature: '!create',
-  async handle (listName, ...welcomeMessage) {
-    await listRepository.store(listName, welcomeMessage.join(' '))
-    return {}
+  signature: '!create-list',
+  helpMessage: 'Usage: !create-list <name> <safe sapce separated description>',
+  active: true,
+  async handle (message, name, ...description) {
+    if (!name) {
+      await message.reply(create.helpMessage)
+      return
+    }
+
+    await listRepository.store(message.from, name, description.join(' '))
+    await message.reply(`List ${name} successfuly created! Use !lists to see your lists`)
   }
 }
 

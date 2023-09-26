@@ -24,6 +24,7 @@
     "@babel/cli": "^7.23.0",
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.22.20",
+    "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "https://github.com/GleisonEm/zap-bot-js.git"
   }
 }
