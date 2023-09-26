@@ -1,0 +1,29 @@
+{
+  "name": "cleiton-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "Whatsapp Bot",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "start:dev": "nodemon --exec yarn start"
+  },
+  "author": "Jorge Pereira <eu.jorge.emanoell@gmail.com>",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      "src/config/*.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/node": "^7.22.19",
+    "babel-plugin-root-import": "^6.6.0",
+    "eslint": "^8.50.0",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "whatsapp-web.js": "https://github.com/GleisonEm/zap-bot-js.git"
+  }
+}

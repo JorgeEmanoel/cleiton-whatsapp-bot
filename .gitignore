@@ -1,0 +1,4 @@
+.wwebjs_cache/
+.wwebjs_auth/
+dist/
+node_modules/
