@@ -1,6 +1,7 @@
 import { logger } from '../helpers/logger.js'
 import { groupsCommands } from '../commands/groups/index.js'
 import { listsCommands } from '../commands/lists/index.js'
+import { cowsayCommands } from '../commands/cowsay/index.js'
 
 const commandMapping = {
   [groupsCommands.create.signature]: groupsCommands.create,
@@ -9,7 +10,8 @@ const commandMapping = {
   [listsCommands.all.signature]: listsCommands.all,
   [listsCommands.get.signature]: listsCommands.get,
   [listsCommands.add.signature]: listsCommands.add,
-  [listsCommands.remove.signature]: listsCommands.remove
+  [listsCommands.remove.signature]: listsCommands.remove,
+  [cowsayCommands.say.signature]: cowsayCommands.say
 }
 
 const unhandledCommand = {
