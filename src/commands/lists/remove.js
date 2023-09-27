@@ -1,22 +1,21 @@
-const logger = require('~/helpers/logger')
+import { logger } from '../../helpers/logger.js'
 
-const listRepository = require('./repositories/listRepository')
+import { listRepository } from './repositories/listRepository.js'
 
 const remove = {
-  signature: '!list',
-  helpMessage: 'Usage: !list <name>',
+  signature: '!list-remove',
+  helpMessage: 'Usage: !remove <name>',
   active: true,
   async handle (message, name) {
-    const list = await listRepository.find(message.from, name)
+    const list = await listRepository.remove(message.from, name)
 
     if (!list) {
-      await message.reply(`List "${id}" not found`)
+      await message.reply(`List "${name}" not found`)
       return
     }
 
-    await listRepository.remove(message.from, name)
     await message.reply(`List "${name}" removed.`)
   }
 }
 
-module.exports = remove
+export { remove }

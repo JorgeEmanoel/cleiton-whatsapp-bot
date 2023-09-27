@@ -8,7 +8,8 @@ const commandMapping = {
   [listsCommands.create.signature]: listsCommands.create,
   [listsCommands.all.signature]: listsCommands.all,
   [listsCommands.get.signature]: listsCommands.get,
-  [listsCommands.add.signature]: listsCommands.add
+  [listsCommands.add.signature]: listsCommands.add,
+  [listsCommands.remove.signature]: listsCommands.remove
 }
 
 const unhandledCommand = {

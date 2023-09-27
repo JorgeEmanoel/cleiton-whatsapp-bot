@@ -56,10 +56,12 @@ const listRepository = {
     })
   },
   async remove (ownerId, listId) {
-    await ListModel.findOneAndDelete({
+    const list = await ListModel.findOneAndDelete({
       name: listId,
       ownerId
     })
+
+    return list
   }
 }
 

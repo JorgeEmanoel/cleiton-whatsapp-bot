@@ -1,8 +1,8 @@
 import { listRepository } from './repositories/listRepository.js'
 
 const create = {
-  signature: '!create-list',
-  helpMessage: 'Usage: !create-list <name> <safe sapce separated description>',
+  signature: '!list-create',
+  helpMessage: 'Usage: !create-list <name> <safe space separated description>',
   active: true,
   async handle (message, name, ...description) {
     if (!name) {
