@@ -1,8 +1,14 @@
-const qrgenerator = require('qrcode-terminal')
+import qrgenerator from 'qrcode-terminal'
+import dotenv from 'dotenv'
 
-const client = require('~/config/client')
-const handlersPiper = require('~/handlers/handlersPiper')
-const logger = require('~/helpers/logger')
+dotenv.config()
+
+import { connect } from './config/database.js'
+connect()
+
+import { client } from './config/client.js'
+import { handlersPiper } from './handlers/handlersPiper.js'
+import { logger } from './helpers/logger.js'
 
 client.on('qr', (qr) => {
   logger.debug('QR Code generated: ', qr)

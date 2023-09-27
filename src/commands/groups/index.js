@@ -1,9 +1,9 @@
-const create = require('~/commands/lists/create')
-const get = require('~/commands/lists/get')
+import { create } from './create.js'
+import { get } from './get.js'
 
-const groupsCommand = {
+const groupsCommands = {
   create,
   get
 }
 
-module.exports = groupsCommand
+export { groupsCommands }

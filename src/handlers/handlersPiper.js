@@ -1,7 +1,7 @@
-const logger = require('~/helpers/logger')
+import { logger } from '../helpers/logger.js'
 
-const messageHandler = require('./messageHandler')
-const commandHandler = require('./commandHandler')
+import { messageHandler } from './messageHandler.js'
+import { commandHandler } from './commandHandler.js'
 
 const pipe = async ({ message, replyOnError }, [...handlers]) => {
   for (let handler of handlers) {
@@ -21,7 +21,7 @@ const handlersPiper = {
   async handle (message) {
     await pipe({
       message,
-      replyOnError: true
+      replyOnError: Boolean(process.env.REPLY_ON_ERROR)
     }, [
       messageHandler,
       commandHandler
@@ -29,4 +29,4 @@ const handlersPiper = {
   }
 }
 
-module.exports = handlersPiper
+export { handlersPiper }

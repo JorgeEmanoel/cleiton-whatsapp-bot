@@ -2,3 +2,5 @@
 .wwebjs_auth/
 dist/
 node_modules/
+data/
+.env

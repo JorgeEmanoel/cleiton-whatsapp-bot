@@ -1,24 +1,24 @@
-const logger = require('~/helpers/logger')
-
-const listRepository = require('./repositories/listRepository')
+import { listRepository } from './repositories/listRepository.js'
 
 const get = {
   signature: '!list',
   helpMessage: 'Usage: !list <name>',
   active: true,
-  async handle (message, id) {
-    const list = await listRepository.get(message.from, id)
+  async handle (message, name) {
+    const list = await listRepository.find(message.from, name)
 
     if (!list) {
       await message.reply(`List "${id}" not found`)
       return
     }
 
-    const items = list.items.map((item, i) => `${i + 1}. ${item}`)
-    items.unshift(`*${list.name}*: \n\n`)
+    const items = await listRepository.find(message.from, name)
 
-    await message.reply(items.join(' '))
+    const formatedItems = items.map((item, i) => `${i + 1}. ${item.description}`)
+    formatedItems.unshift(`*${name}*: \n`)
+
+    await message.reply(formatedItems.join('\n'))
   }
 }
 
-module.exports = get
+export { get }

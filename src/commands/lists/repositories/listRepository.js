@@ -1,4 +1,5 @@
-const lists = {}
+import { ListModel } from "../models/listModel.js"
+import { ListItemModel } from "../models/listItemModel.js"
 
 const listRepository = {
   async store (ownerId, name, description) {
@@ -6,33 +7,60 @@ const listRepository = {
       description = ''
     }
 
-    if (!lists[ownerId]) {
-      lists[ownerId] = {}
-    }
-
-    lists[ownerId][name] = {
+    await ListModel.create({
       name,
       description,
-      items: []
-    }
+      ownerId
+    })
   },
-  all (ownerId) {
-    if (!lists[ownerId]) {
+  async all (ownerId) {
+    return ListModel.find({
+      ownerId
+    })
+  },
+  async find (ownerId, name) {
+    const list = await ListModel.find({
+      name,
+      ownerId
+    })
+
+    return list
+  },
+  async addItem (ownerId, listId, description) {
+    const list = await ListModel.findOne({
+      name: listId,
+      ownerId
+    })
+
+    if (!list) {
+      return 
+    }
+
+    await ListItemModel.create({
+      listId,
+      description
+    })
+  },
+  async items (ownerId, listId) {
+    const list = await ListModel.findOne({
+      name: listId,
+      ownerId
+    })
+
+    if (!list) {
       return []
     }
 
-    return Object.values(lists[ownerId])
+    return await ListItemModel.find({
+      listId
+    })
   },
-  get (ownerId, id) {
-    if (!lists[ownerId]) {
-      return []
-    }
-
-    return lists[ownerId][id]
-  },
-  async addItem (ownerId, id, description) {
-    lists[ownerId][id].items.push(description)
+  async remove (ownerId, listId) {
+    await ListModel.findOneAndDelete({
+      name: listId,
+      ownerId
+    })
   }
 }
 
-module.exports = listRepository
+export { listRepository }

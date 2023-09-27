@@ -1,4 +1,4 @@
-const groupRepository = require('./repositories/groupRepository')
+import { groupRepository } from './repositories/groupRepository.js'
 
 const get = {
   signature: '!groups',
@@ -12,4 +12,4 @@ const get = {
   }
 }
 
-module.exports = get
+export { get }

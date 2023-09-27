@@ -1,4 +1,4 @@
-const groupRepository = require('./repositories/groupRepository')
+import { groupRepository } from './repositories/groupRepository.js'
 
 const create = {
   signature: '!create-group',
@@ -14,4 +14,4 @@ const create = {
   }
 }
 
-module.exports = create
+export { create }

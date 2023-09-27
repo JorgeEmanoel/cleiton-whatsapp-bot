@@ -1,6 +1,6 @@
-const logger = require('~/helpers/logger')
+import { logger } from '../../helpers/logger.js'
 
-const listRepository = require('./repositories/listRepository')
+import { listRepository } from './repositories/listRepository.js'
 
 const all = {
   signature: '!lists',
@@ -11,8 +11,10 @@ const all = {
     const formatedLists = lists.map(({ name, description }, i) => `${i + 1}. ${name}: "${description}"`)
     formatedLists.unshift('Here is your lists: \n\n')
 
+    logger.debug({ lists })
+
     await message.reply(formatedLists.join('\n'))
   }
 }
 
-module.exports = all
+export { all }

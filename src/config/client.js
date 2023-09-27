@@ -1,7 +1,8 @@
-const { Client, LocalAuth } = require('whatsapp-web.js')
+import pkg from 'whatsapp-web.js';
+const { Client, NoAuth } = pkg;
 
 const client = new Client({
-  authStrategy: new LocalAuth()
+  authStrategy: new NoAuth()
 });
 
-module.exports = client
+export { client }

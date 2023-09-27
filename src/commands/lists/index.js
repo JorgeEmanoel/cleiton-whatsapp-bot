@@ -1,13 +1,13 @@
-const create = require('./create')
-const get = require('./get')
-const all = require('./all')
-const add = require('./add')
+import { create } from './create.js'
+import { get } from './get.js'
+import { all } from './all.js'
+import { add } from './add.js'
 
-const listsCommand = {
+const listsCommands = {
   create,
   get,
   all,
   add
 }
 
-module.exports = listsCommand
+export { listsCommands }

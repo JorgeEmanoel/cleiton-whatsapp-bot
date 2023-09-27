@@ -1,4 +1,4 @@
-const listRepository = require('./repositories/listRepository')
+import { listRepository } from './repositories/listRepository.js'
 
 const add = {
   signature: '!list-item',
@@ -10,4 +10,4 @@ const add = {
   }
 }
 
-module.exports = add
+export { add }

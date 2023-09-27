@@ -1,15 +1,14 @@
-const logger = require('~/helpers/logger')
-
-const messageRepository = require('~/repositories/messageRepository')
+import { logger } from '../helpers/logger.js'
 
 const messageHandler = {
   async handle (message) {
-    const { notifyName: from, body: content } = message._data
+    const { notifyName: from, body: content, isStatus } = message._data
 
-    logger.info(`Message - ${from} said: ${content}`)
-    await messageRepository.store(message)
+    if (Boolean(process.env.LOG_MESSAGES) && !isStatus) {
+      logger.info(`Message - ${from} said: ${content}`)
+    }
   }
 }
   
 
-module.exports = messageHandler
+export { messageHandler }

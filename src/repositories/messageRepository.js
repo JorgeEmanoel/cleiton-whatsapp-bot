@@ -6,4 +6,4 @@ const messageRepository = {
   }
 }
 
-module.exports = messageRepository
+export { messageRepository }

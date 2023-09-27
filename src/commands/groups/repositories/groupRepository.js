@@ -1,4 +1,4 @@
-const groups = {}
+import { GroupModel } from "../models/groupModel.js"
 
 const groupRepository = {
   async store (name, welcomeMessage) {
@@ -6,14 +6,14 @@ const groupRepository = {
       welcomeMessage = ''
     }
 
-    groups[name] = {
+    await GroupModel.create({
       name,
       welcomeMessage
-    }
+    })
   },
   async get () {
-    return Object.values(groups)
+    return GroupModel.find()
   }
 }
 
-module.exports = groupRepository
+export { groupRepository }
